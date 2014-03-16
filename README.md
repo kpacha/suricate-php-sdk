@@ -3,6 +3,8 @@ suricate-php-sdk
 
 A suricate sdk for php
 
+[![Build Status](https://travis-ci.org/kpacha/suricate-php-sdk.png?branch=master)](https://travis-ci.org/kpacha/suricate-php-sdk)
+
 #Requirements
 
 * git
@@ -10,7 +12,11 @@ A suricate sdk for php
 * php 5.3.3+
 * curl extension
 
-#Install
+#Installation
+
+##Standalone
+
+###Git installation
 
 Clone the repo
 
@@ -22,6 +28,23 @@ Install the php dependencies
     $ curl -sS https://getcomposer.org/installer | php
     $ php composer.phar install
 
+###Composer installation
+
+Create a project with composer
+
+    $ curl -sS https://getcomposer.org/installer | php
+    $ php composer.phar create-project kpacha/suricate-php-sdk [directory]
+
+Remeber to set the [directory] parameter or composer will create the project in your current path.
+
+##As a library
+
+Include the `kpacha/suricate-php-sdk` package in your compose.json with all the dependencies of your project
+
+    "require":{
+        "kpacha/suricate-php-sdk": "dev-master"
+    }
+
 #Usage
 
 The suricate sdk comes with a simple client and several console commands bundled in a simple app.
@@ -30,7 +53,7 @@ The suricate sdk comes with a simple client and several console commands bundled
 
 The `Kpacha\Suricate\Suricate` constructor requires a `Guzzle\Http\Client` rest client. 
 
-    $suricateClient = new Suricate(new Client($suritcateServerUrl));
+    $suricateClient = new Suricate(new Client($suricateServerUrl));
 
 And now the `$suricateClient` object is ready to work. Here you have some examples
 
@@ -46,8 +69,8 @@ Check the [test](tests/SuricateTest.php) for more details.
 
 Run the `suricate` script to trigger any console command. You can use them as a:
 
-* simple manager limited to some basic interactions with your suricateservice
-* simple agent to send some heartbeats to suricate (it should be monitored by some external tool, restarting it periodically)
+* simple manager limited to some basic interactions with your suricate service
+* simple agent to send some heartbeats to suricate (it should be monitored by some external tool, restarting it periodically). This way, suricate will be aware of the status of your node.
 * base for your more complex consumption patterns. Usually, you will also need to fetch all the available nodes registered under the services you are interested in.
 
 Check out the `list` built-in command and get a list of all the available commands.
@@ -112,3 +135,4 @@ Remember, you can also get more details about any command just adding the `--hel
      --no-ansi             Disable ANSI output.
      --no-interaction (-n) Do not ask any interactive question.
 
+Suricate only accepts payloads as `String`, so you should model your data with that in mind and, maybe, instead of seeing it as a limitation and send just plain texts, you would add some serializated info. Just remember, ZooKeeper is not a database, so use it with caution!
