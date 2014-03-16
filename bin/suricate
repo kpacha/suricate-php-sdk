@@ -2,11 +2,5 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$application = new Symfony\Component\Console\Application('Suricate', 'Beta');
-$application->add(new Kpacha\Suricate\Command\GetAllNames);
-$application->add(new Kpacha\Suricate\Command\GetAll);
-$application->add(new Kpacha\Suricate\Command\Get);
-$application->add(new Kpacha\Suricate\Command\RemoveService);
-$application->add(new Kpacha\Suricate\Command\PutService);
-$application->add(new Kpacha\Suricate\Command\SendHeartBeats);
+$application = new Kpacha\Suricate\Console\Application();
 $application->run();
