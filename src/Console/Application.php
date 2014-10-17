@@ -14,7 +14,7 @@ class Application extends BaseApplication
 {
 
     const APP_NAME = 'Suricate';
-    const VERSION = '0.0.1-Beta';
+    const VERSION = '1.0.0';
     private static $logo = <<<LOGO
 
 ----------------------------------------------------------------------------<comment>
