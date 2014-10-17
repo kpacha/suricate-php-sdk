@@ -1,12 +1,11 @@
 {
     "name": "kpacha/suricate-php-sdk",
-    "version": "1.0.0-beta",
     "description": "sdk for the suricate service.",
     "keywords": ["service discovery", "suricate", "zookeeper", "curator", "curator-x-discovery", "curator-x-discovery-server"],
     "license": "Apache-2.0",
     "require": {
         "php": ">=5.3.3",
-        "symfony/console": "*",
+        "symfony/console": "~2.4",
         "guzzle/guzzle":"~3.7"
 	},
     "require-dev": {
@@ -14,7 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Kpacha\\Suricate\\": ["src/", "test/"]
+            "Kpacha\\Suricate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kpacha\\Suricate\\": "test/"
         }
     }
 }
