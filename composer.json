@@ -12,6 +12,9 @@
         "phpunit/phpunit": "3.7.*"
     },
     "bin": ["bin/suricate"],
+    "config": {
+        "bin-dir": "bin"
+    },
     "autoload": {
         "psr-4": {
             "Kpacha\\Suricate\\": "src/"

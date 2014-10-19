@@ -80,7 +80,7 @@ Run the `suricate` script to trigger any console command. You can use them as a:
 * simple agent to send some heartbeats to suricate (it should be monitored by some external tool, restarting it periodically). This way, suricate will be aware of the status of your node.
 * base for your more complex consumption patterns. Usually, you will also need to fetch all the available nodes registered under the services you are interested in.
 
-Check out the `list` built-in command and get a list of all the available commands. If you are running the suricate-php-sdk as a library, remember to replace `bin/suricate` with `vendor/bin/suricate`
+Check out the `list` built-in command and get a list of all the available commands.
 
     $ bin/suricate list
     
