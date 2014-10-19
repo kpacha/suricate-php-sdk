@@ -2,7 +2,7 @@
 
 namespace Kpacha\Suricate;
 
-use Guzzle\Http\Client;
+use Guzzle\Http\ClientInterface;
 
 class Suricate
 {
@@ -13,7 +13,7 @@ class Suricate
 
     private $client;
 
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }

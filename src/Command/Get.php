@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
-use Kpacha\Suricate\Suricate;
+use Kpacha\Suricate\SuricateBuilder;
 use Guzzle\Http\Client;
 
 class Get extends Command
@@ -32,7 +32,7 @@ class Get extends Command
         }
         $suritcateServerUrl = $input->getArgument('suricate-server');
 
-        $suricateClient = new Suricate(new Client($suritcateServerUrl));
+        $suricateClient = SuricateBuilder::build($suritcateServerUrl);
 
         $output->writeln(print_r($suricateClient->get($serviceName, $nodeId), true));
     }

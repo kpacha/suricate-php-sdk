@@ -23,7 +23,7 @@ class GetAllNames extends Command
     {
         $suritcateServerUrl = $input->getArgument('suricate-server');
 
-        $suricateClient = new Suricate(new Client($suritcateServerUrl));
+        $suricateClient = SuricateBuilder::build($suritcateServerUrl);
 
         $output->writeln(print_r($suricateClient->getAllNames(), true));
     }

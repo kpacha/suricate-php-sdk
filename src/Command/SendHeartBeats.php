@@ -45,7 +45,7 @@ class SendHeartBeats extends Command
         }
         $suritcateServerUrl = $input->getArgument('suricate-server');
 
-        $suricateClient = new Suricate(new Client($suritcateServerUrl));
+        $suricateClient = SuricateBuilder::build($suritcateServerUrl);
 
         $node = json_decode($node);
 

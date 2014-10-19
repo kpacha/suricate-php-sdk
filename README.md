@@ -42,7 +42,7 @@ Remeber to set the [directory] parameter or composer will create the project in 
 Include the `kpacha/suricate-php-sdk` package in your compose.json with all the dependencies of your project
 
     "require":{
-        "kpacha/suricate-php-sdk": "dev-master"
+        "kpacha/suricate-php-sdk": "~1.0"
     }
 
 #Usage
@@ -51,9 +51,16 @@ The suricate sdk comes with a simple client and several console commands bundled
 
 ###Suricate client
 
-The `Kpacha\Suricate\Suricate` constructor requires a `Guzzle\Http\Client` rest client. 
+The `Kpacha\Suricate\Suricate` constructor requires a rest client. The client must implement the `Guzzle\Http\ClientInterface` interface. 
 
+    use Guzzle\Http\Client;
+    use Kpacha\Suricate\Suricate;
     $suricateClient = new Suricate(new Client($suricateServerUrl));
+
+Also, there is a builder to help you
+
+    use Kpacha\Suricate\SuricateBuilder;
+    $suricateClient = SuricateBuilder::build(suricateServerUrl);
 
 And now the `$suricateClient` object is ready to work. Here you have some examples
 
