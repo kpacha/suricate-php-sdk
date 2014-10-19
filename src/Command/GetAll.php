@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
-use Kpacha\Suricate\Suricate;
+use Kpacha\Suricate\SuricateBuilder;
 use Guzzle\Http\Client;
 
 class GetAll extends Command

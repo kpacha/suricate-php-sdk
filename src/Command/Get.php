@@ -32,7 +32,7 @@ class Get extends Command
         }
         $suritcateServerUrl = $input->getArgument('suricate-server');
 
-        $suricateClient = SuricateBuilder::build($suritcateServerUrl);
+        $suricateClient = Kpacha\Suricate\SuricateBuilder::build($suritcateServerUrl);
 
         $output->writeln(print_r($suricateClient->get($serviceName, $nodeId), true));
     }
