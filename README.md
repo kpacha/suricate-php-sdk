@@ -80,9 +80,9 @@ Run the `suricate` script to trigger any console command. You can use them as a:
 * simple agent to send some heartbeats to suricate (it should be monitored by some external tool, restarting it periodically). This way, suricate will be aware of the status of your node.
 * base for your more complex consumption patterns. Usually, you will also need to fetch all the available nodes registered under the services you are interested in.
 
-Check out the `list` built-in command and get a list of all the available commands.
+Check out the `list` built-in command and get a list of all the available commands. If you are running the suricate-php-sdk as a library, remember to replace `bin/suricate` with `vendor/bin/suricate`
 
-    $ php bin/suricate list
+    $ bin/suricate list
     
     ----------------------------------------------------------------------------
      .oooooo..o                       o8o                          .             
@@ -121,7 +121,7 @@ Check out the `list` built-in command and get a list of all the available comman
 
 Remember, you can also get more details about any command just adding the `--help` option.
 
-    $ php bin/suricate suricate:heartbeat --help
+    $ bin/suricate suricate:heartbeat --help
     Usage:
      suricate:heartbeat [-s|--service="..."] [-i|--id="..."] [--node="..."] [-t|--total="..."] [-w|--wait="..."] suricate-server
 
