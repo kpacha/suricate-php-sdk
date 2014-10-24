@@ -20,7 +20,7 @@ class Suricate
 
     public function getAllNames()
     {
-        $services = $this->executeGetMethod(self::URL_PREFIX);
+        $services = $this->executeGetMethod();
         $serviceNames = array();
         foreach ($services as $service) {
             $serviceNames[] = $service['name'];
@@ -30,35 +30,48 @@ class Suricate
 
     public function getAll($service)
     {
-        return $this->executeGetMethod(self::URL_PREFIX . "/$service");
+        return $this->executeGetMethod("/$service");
     }
 
     public function get($service, $id)
     {
-        return $this->executeGetMethod(self::URL_PREFIX . "/$service/$id");
+        return $this->executeGetMethod("/$service/$id");
     }
 
-    private function executeGetMethod($url)
+    private function executeGetMethod($url = '')
     {
-        $request = $this->client->get($url);
-        $response = $request->send();
+        $response = $this->send($this->client->get($this->getNormalizedUrl($url)));
         return json_decode($response->getBody(), true);
     }
 
     public function putService($service, $id, $node)
     {
         $request = $this->client->put(
-                self::URL_PREFIX . "/$service/$id", array('Content-Type' => 'application/json'), json_encode($node)
+                $this->getNormalizedUrl("/$service/$id"),
+                array('Content-Type' => 'application/json'),
+                json_encode($node)
         );
-        $response = $request->send();
+        $response = $this->send($request);
         return $response->getStatusCode() == self::STATUS_CODE_CREATED;
     }
 
     public function removeService($service, $id)
     {
-        $request = $this->client->delete(self::URL_PREFIX . "/$service/$id");
-        $response = $request->send();
+        $response = $this->send($this->client->delete($this->getNormalizedUrl("/$service/$id")));
         return $response->getStatusCode() == self::STATUS_CODE_OK;
     }
 
+    private function getNormalizedUrl($url)
+    {
+        return self::URL_PREFIX . $url;
+    }
+
+    private function send($request)
+    {
+        try {
+            return $request->send();
+        } catch (\Exception $e) {
+            throw new SuricateException($e->getMessage());
+        }
+    }
 }

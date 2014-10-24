@@ -83,6 +83,22 @@ class SuricateTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($suricate->removeService('test', 'ca2fff8e-d756-480c-b59e-8297ff886240'));
     }
 
+    /**
+     * @expectedException Kpacha\Suricate\SuricateException
+     */
+    public function testSuricateExceptionIsThrowedIdSomethingGoesWrong()
+    {
+        $request = $this->getMock('Request', array('send'));
+        $request->expects($this->once())->method('send')->will($this->throwException(new \Exception('master caution!')));
+
+        $client = $this->getMock(self::CLIENT_CLASS);
+        $client->expects($this->once())->method('get')->will($this->returnValue($request));
+
+        $suricate = new Suricate($client);
+
+        $suricate->get('test', 'ca2fff8e-d756-480c-b59e-8297ff886240');
+    }
+
     private function getMockedClient($requestUrl, $requestReturnedValue)
     {
         $client = $this->getMock(self::CLIENT_CLASS);

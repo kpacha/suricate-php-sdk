@@ -64,11 +64,15 @@ Also, there is a builder to help you
 
 And now the `$suricateClient` object is ready to work. Here you have some examples
 
-    $success = $suricateClient->putService($serviceName, $nodeId, $node);
-    $serviceNames = $suricateClient->getAllNames();
-    $nodes = $suricateClient->getAll($serviceName);
-    $node = $suricateClient->get($serviceName, $nodeId);
-    $success = $suricateClient->removeService($serviceName, $nodeId);
+    try{
+        $success = $suricateClient->putService($serviceName, $nodeId, $node);
+        $serviceNames = $suricateClient->getAllNames();
+        $nodes = $suricateClient->getAll($serviceName);
+        $node = $suricateClient->get($serviceName, $nodeId);
+        $success = $suricateClient->removeService($serviceName, $nodeId);
+    } catch (\Kpacha\Suricate\SuricateException $e) {
+        // do something cleaver
+    }
 
 Check the [test](tests/SuricateTest.php) for more details.
 
